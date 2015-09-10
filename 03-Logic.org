@@ -1,3 +1,6 @@
+#+TITLE: Logic
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-09-10
 #+LATEX_HEADER: \newcommand*\lxor{\mathbin{\oplus}}
 
 * Translating English to Logic
