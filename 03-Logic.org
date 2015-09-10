@@ -1,0 +1,102 @@
+#+LATEX_HEADER: \newcommand*\lxor{\mathbin{\oplus}}
+
+* Translating English to Logic
+
+** Example 1
+
+1. If my nose is cold, then I am unhappy.
+2. If I'm happy, then my nose is not cold.
+3. My nose is not cold or I'm unhappy.
+
+Let p: my nose is cold.
+Let q: I am unhappy
+
+Therefore,
+1. \( p \implies q \)
+2. \( \lnot q \implies \lnot p \)
+3. \( \lnot p \lor q \)
+
+All of these statements are logically equivalent!
+
+** Example 2
+
+> You can major in CSE only if you pass EECS 203.
+
+Let p: you can major in CSE.
+Let q: you pass EECS 203
+
+Therefore, \( p \implies q \). We can also represent this as
+\( \lnot q \implies \lnot p \), and a literal translation of
+that would be:
+
+> If you don't pass EECS 203, you can't major in CSE.
+
+* Definitions
+
+- A *tautology* is a compound proposition that is always true.
+- A *contradiction* is a compound proposition that is always false.
+- $p$ and $q$ are *logically equivalent* if $p \iff q$ is a tautology.
+
+* Useful Logical Equivalences
+
+- $p \land T = p$
+- $p \lor T = T$
+- $p \land F = F$
+- $p \lor F = p$
+- $\lnot (\lnot p) = p$
+- $p \lor p = p$
+- $p \land p = p$
+
+Commutative Laws:
+- $p \lor q = q \lor p$
+- $p \land q = q \land p$
+
+Associative Laws:
+- $(p \lor q) \lor r = p \lor (q \lor r)$
+- $(p \land q) \land r = p \land (q \land r)$
+
+Distributive Laws:
+- $p \lor (q \land r) = (p \lor q) \land (p \lor r)$
+- $p \land (q \lor r) = (p \land q) \lor (p \land r)$
+
+DeMorgan's Laws:
+- $\lnot (p \land q) = \lnot p \lor \lnot p$
+- $\lnot (p \lor q) = \lnot q \land \lnot q$
+
+* Biconditional
+
+$$ p \iff q \equiv (p \implies q) \land (q \implies p) $$
+
+* Proof techniques
+
+\begin{align*}
+\lnot (p \lor (\lnot p \land q)) &\equiv \lnot p \land \lnot q \\
+&\equiv \lnot ((p \lor \lnot p) \land (p \lor q)) \\
+&\equiv \lnot (T \land (p \lor q)) \\
+&\equiv \lnot (p \lor q) \\
+&\equiv \lnot p \land \lnot q
+\end{align*}
+
+* Logical Circuits
+
+It is a good idea to use logical equivalences to simplify circuits.
+
+* Logic Puzzles
+
+** Example 1
+
+Two people, Alice and Bob, are either liars or truth-tellers.
+
+Statements:
+Alice: "Bob is a truthteller."
+Bob: "Alice and I are different types."
+
+- Let $p$ :: Alice is a truthteller
+- Let $q$ :: Bob is a truthteller
+             
+| $p$ | $q$ | $p \lxor q$ | $(p \iff q) \land (q \iff (p \lxor q))$ |
+|-----+-----+-------------+-----------------------------------------|
+| T   | T   | F           | T \land F \equiv F                      |
+| T   | F   | T           | F \land F \equiv F                      |
+| F   | T   | T           | F \land T \equiv F                      |
+| F   | F   | F           | T \land T \equiv T                      |
