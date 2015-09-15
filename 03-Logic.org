@@ -1,6 +1,6 @@
 #+TITLE: Logic
 #+AUTHOR: Nathan Moos
-#+DATE: 2015-09-10
+#+DATE: 2015-09-15
 #+LATEX_HEADER: \newcommand*\lxor{\mathbin{\oplus}}
 
 * Translating English to Logic
@@ -80,6 +80,8 @@ $$ p \iff q \equiv (p \implies q) \land (q \implies p) $$
 &\equiv \lnot p \land \lnot q
 \end{align*}
 
+Note that all it takes to disprove is a counterexample.
+
 * Logical Circuits
 
 It is a good idea to use logical equivalences to simplify circuits.
@@ -103,3 +105,98 @@ Bob: "Alice and I are different types."
 | T   | F   | T           | F \land F \equiv F                      |
 | F   | T   | T           | F \land T \equiv F                      |
 | F   | F   | F           | T \land T \equiv T                      |
+* First-order logic
+
+** Predicates
+
+Every proposition is a declarative statement, and therefore has a subject and a
+/predicate/. A /predicate/ is a property or relation.
+
+(You could think of a predicate as a function that takes one parameter representing
+the subject and returns a =boolean= value.)
+
+Therefore,
+
+#+BEGIN_QUOTE
+For any predicate and any subject $x$, there exists a proposition that $x$
+satisfies the given predicate.
+#+END_QUOTE
+
+*** In-class example 1
+
+T(I, mom) \land T(I, dad) \land \lnot T(dad, mom) \land \lnot T(mom, dad)
+
+*** In-class example 2
+
+#+BEGIN_QUOTE
+If rain is forecast for Wednesday, then I'll buy an umbrella, otherwise I'll buy
+a latte.
+#+END_QUOTE
+
+Let $R(x) =$ "rain is forecast for $x$", $B(x, y) =$ "$x$ will buy $y$".
+
+(R(Wednesday) \implies B(I, umbrella)) \land (\lnot R(Wednesday) \implies B(I, latte))
+
+** Quantifiers
+   
+*NOTE:* You must define the domain equivalent to the set of all possible arguments.
+
+| Name                   | Notation           | Meaning                                  |
+|------------------------+--------------------+------------------------------------------|
+| universal quantifier   | $\forall x P(x)$   | $P(x)$ is true for all $x$ in the domain |
+| existential quantifier | $\exists x P(x)$   | There exists some $x$ in the domain      |
+|                        |                    | such that $P(x)$ is true                 |
+| unique quantifier      | $\exists_1 x P(x)$ | There exists /exactly one/ $x$ in the    |
+|                        |                    | domain such that $P(x)$ is true          |
+
+*** In-class example 1
+
+#+BEGIN_QUOTE
+Someone in this class is hungry and thirsty.
+#+END_QUOTE
+    
+Use the existential quantifier: $\exists x (P(x) \land Q(x))$.
+
+*** Nested quantifiers
+
+*Order is important!*
+
+$\forall x \exists x P(x, y)$ means "for all $x$, there exists some $y$ where
+$P(x, y)$ is true", while $\exists y \forall x P(x, y)$ means "there's at least
+one $y$ for all $x$ where $P(x, y)$ is true".
+
+*** In-class iclicker question
+
+First draft:
+#+BEGIN_QUOTE
+There exists at least one student $x$ for all distinct pairs of students $(y, z)$ for which
+if $x$ knows $y$ and $x$ knows $z$, then $y$ does not know $z$.
+#+END_QUOTE
+** Logical Equivalence
+
+Let $S$ and $T$ be two statements involving predicates and quantifiers. 
+$S$ and $T$ are logically equivalent if and only if they have the same
+truth value regardless of predicates for the domains.
+
+*** In-class example 1
+
+$\forall x (P(x) \land Q(x)) \equiv \forall x P(x) \land \forall x Q(x)$ 
+because both sides are logically equivalent
+
+$\forall x (P(x) \lor Q(x)) \not\equiv \forall x P(x) \lor \forall x P(x)$
+because the sides are not logically equivalent
+
+** Negation
+
+DeMorgan's Laws apply here:
+$\lnot \forall x P(x) \not\equiv \forall x \lnot P(x)$,
+instead
+$\lnot \forall x P(x) \equiv \exists x \lnot P(x)$
+
+Nested quantifiers proof:
+\begin{align*}
+\text{Let } Q(x) &\equiv \exists y P(x, y) \\
+\lnot \forall x \exists y P(x, y) &\equiv \lnot \forall x Q(x) \\
+&\equiv \exists x \lnot Q(x) \\
+&\equiv \exists x \forall y \lnot P(x, y)
+\end{align*}
