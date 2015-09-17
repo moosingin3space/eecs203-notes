@@ -1,0 +1,194 @@
+#+TITLE: Methods of Inference
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-09-17
+#+LATEX_HEADER: \newcommand*\myline{\rule{0.5cm}{0.4pt}}
+
+* Definitions
+
+- Argument :: is a sequence of statements ending in a conclusion
+- Premises :: Statements assumed to be true at the beginning.
+- Valid argument :: Does the conclusion follow from the premises?
+- True argument :: If the premises are true, the conclusion must also be true.
+                  
+A common notation is
+\begin{align*}
+&p_1 \\
+&p_2 \\
+&p_3 \\
+&\myline \\
+\therefore &q
+\end{align*}
+
+If the argument is valid, $(p_1 \land p_2 \land p_3) \implies q$ is a tautology.
+
+* Rules of Inference
+
+** /Modus ponens/
+
+\begin{align*}
+&p \implies q \\
+&p \\
+&\rule{0.5cm}{0.4pt} \\
+\therefore &q
+\end{align*}
+
+** /Modus tollens/
+
+\begin{align*}
+&p \implies q \\
+&\lnot q \\
+&\myline \\
+\therefore &\lnot p
+\end{align*}
+
+** Resolution
+   
+\begin{align*}
+&p \lor q \\
+&\lnot p \lor r \\
+&\myline \\
+\therefore &q \lor r
+\end{align*}
+
+** Hypothetical syollogism
+   
+\begin{align*}
+&p \implies q \\
+&q \implies r \\
+&\myline \\
+\therefore &p \implies r
+\end{align*}
+
+** Addition
+   
+\begin{align*}
+&p \\
+&\myline \\
+\therefore &p \lor q
+\end{align*}
+
+** Disjunctive syllogism
+   
+\begin{align*}
+&p \lor q \\
+&\lnot p \\
+&\myline \\
+\therefore &q
+\end{align*}
+
+** Simplification
+
+\begin{align*}
+&p \land q \\
+&\myline \\
+\therefore &p
+\end{align*}
+
+** Conjunction
+
+\begin{align*}
+&p \\
+&q \\
+&\myline \\
+\therefore &p \land q
+\end{align*}
+
+* Fallacies
+
+** Affirming the conclusion
+   
+\begin{align*}
+&p \implies q \\
+&q \\
+&\myline \\
+\therefore &p
+\end{align*}
+
+** Denying the hypothesis
+
+\begin{align*}
+&p \implies q \\
+&\lnot p \\
+&\myline \\
+\therefore &q
+\end{align*}
+
+* Inference with quantifiers
+  
+** Universal instantiation
+
+\begin{align*}
+&\forall x P(x) \\
+&\myline \\
+\therefore &P(C) \text{ for any arbitrary $C$.}
+\end{align*}
+
+** Universal generalization
+
+The converse of universal instantiation.
+
+** Existential instantiation
+
+\begin{align*}
+&\exists x P(x) \\
+&\myline \\
+\therefore &P(C) \text{ for some $C$.}
+\end{align*}
+
+** Existential generalization
+
+The converse of existential instantiation.
+
+* Building a valid argument 
+  
+** Without quantifiers
+  
+Say we have the following:
+\begin{align}
+&B \implies A \\
+&S \iff (A \land \lnot y) \\
+&B \\
+&\lnot y \\
+\nonumber &\myline \\
+\nonumber \therefore &S
+\end{align}
+
+The following steps let us prove it:
+
+1. $A$ is true by /modus ponens/ of (1), (3).
+2. $A \land \lnot y$ is true by conjunction of (1), (4).
+4. $(A \land \lnot y) \implies S$ is true by definition of $\iff$ 
+   and simplification of (2).
+5. Therefore, $S$ by /modus ponens/ applied to $2$ and $4$.
+
+** With quantifiers
+
+Say we have:
+\begin{align}
+&\forall x (B(x) \implies A(x)) \\
+&\exists x B(x) \\
+\nonumber &\myline \\
+\nonumber \therefore &\exists x A(x)
+\end{align}
+
+1. $B(C)$ by existential instantiation of (2)
+2. $B(C) \implies A(C)$ by universal instantiation of (1)
+3. $A(C)$ by /modus ponens/ of steps 1 and 2.
+4. $\exists x A(x)$ by existential generalization of step 3.
+* Methods of proof
+
+** Direct proof
+
+Show that $p \implies q$.
+
+** Proof  by contraposition
+
+Instead of trying to prove $p \implies q$, prove that $\lnot q \implies \lnot
+p$. Those two are logical equivalences.
+
+This is very helpful for a large number of premises.
+
+$$ p_1 \iff p_2 \iff p_3 \iff ... \iff p_n \equiv (p_1 \implies p_2) \land
+   (p_2 \implies p_3) \land ... \land (p_n \implies p_1) $$
+   
+A proof by contraposition can simplify the sub-proofs.
