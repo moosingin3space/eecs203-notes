@@ -1,0 +1,76 @@
+#+TITLE: Number Theory
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-09-22
+
+* Division
+
+The notation $a | b$ means "$a$ divides $b$", or formally expressed as
+$\exists c (b = ac)$ where all parameters are integers.
+
+** Divisibility 
+
+- Everything divides zero.
+- $\forall (a, b, c) ((a|b)\land (b|c)) \implies (a|c)$
+- $((a|b) \land (c|d)) \implies ac|bd$
+- $((a|b) \land (a|c)) \implies a|(b + c)$
+
+** Modular Arithmetic
+ 
+Division Algorithm: $b = mc + r$ where all are integers and $0 \le r < m$.
+
+In some cases, we only care about the remainder. We define the /modulo/ operator
+that returns the remainder. The above division algorithm can be re-stated as 
+$r \equiv b \mod m$.
+
+** Congruence
+
+$(a \mod m \equiv b \mod m) \implies m | (a - b)$
+
+** Useful properties
+
+- Odd numbers :: $a \equiv 1 \mod 2$ "$a$ is an odd number"
+- Multiples :: $a \equiv 0 \mod b$ "$a$ is a multiple of $b$"
+* Alternative Methods of Proof
+
+** Exhaustive Case Analysis
+
+List all possible cases and show truth
+
+** Proof by Cases
+
+Break it up into multiple possibilities and show truth for each.
+
+** Counterexample
+
+A single instance of where a statement is not correct will disprove
+a proposition.
+
+** Contradiction
+
+To prove premise $p$, assume $p$ is false and deduce a contradiction.
+
+* In-class iclicker question
+
+\begin{align}
+a \implies b \\
+c \implies d \\
+a \lor c \\
+d \lor \lnot b \\
+\lnot a \lor b \\
+\lnot c \lor d \\
+c \lor b \\
+c \lor d \\
+d \lor d \\
+d
+\end{align}
+
+1. Given
+2. Given
+3. Given
+4. Given
+5. Equivalence of (1)
+6. Equivalence of (2)
+7. Resolution of (3) and (5)
+8. Resolution of (4) and (7)
+9. Resolution of (6) and (8)
+10. Idempotence of (9)
