@@ -1,0 +1,103 @@
+#+TITLE: Sets
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-09-24
+#+LATEX_HEADER: \newcommand*\union{\cup}
+#+LATEX_HEADER: \newcommand*\intersection{\cap}
+
+* Definition
+
+A /set/ is an unordered collection of objects.
+
+* Special Sets
+  
+These are all written with "blackboard bold" notation.
+
+- $\mathbb{N}$ :: Natural numbers (all non-negative integers)
+- $\mathbb{Z}$ :: Integers
+- $\mathbb{Q}$ :: Rational numbers
+- $\mathbb{R}$ :: Real numbers
+- $\mathbb{C}$ :: Complex numbers
+- $\emptyset$ :: The empty set
+                 
+* Set Builder Notation
+
+We define a set by specifying element properties. 
+
+** Examples
+   
+All integers from 1 to 20:
+$$ \{ n \in \mathbb{Z} | 1 \le n \le 20 \} $$
+
+All real numbers between -3 and 3:
+$$ \{ x \in \mathbb{R} | x^2 < 9 \} $$
+
+Irrational numbers:
+$$ \{ x \in \mathbb{R} | x \not\in \mathbb{Q} \} $$
+* Relationships
+
+- Equality :: $A = B$, means that $A$ and $B$ have the same distinct elements.
+- Subset :: $A \subseteq B$, means that all elements in $A$ are in $B$.
+- Proper Subset :: $A \subset B$, means that $A \subseteq B \land A \ne B$.
+
+** Definitions
+
+- Equality :: $A = B \equiv \forall x ((x \in A) \iff (x \in B))$
+- Subset :: $A \subseteq B \equiv \forall x ((x \in A) \implies (x \in B))$
+- Proper Subset :: $A \subset B \equiv \forall x ((x \in A) \implies (x \in B)) 
+                   \land \exists y ((y \in B) \implies (y \not\in A))$
+- Equality in terms of subsets :: $A = B \equiv (A \subseteq B) \land (B \subseteq A)$
+* Cardinality
+
+Let $S$ be a set. If the number of distinct elements in $S$ is $n$, where 
+$n > 0$, where $n \in \mathbb{Z}^+$, we say $S$ is a finite set with cardinality
+$n$.
+
+Cardinality is denoted with the magnitude operator, e.g. $|S|$.
+* Power Set
+
+The /power set/ $P(S)$ of a set $S$ is a set of all possible subsets of $S$.
+
+$|P(S)| = 2^{|S|}$.
+
+* Operations
+
+- Union :: $A \union B = \{ x | x \in A \lor x \in B \}$
+- Intersection :: $A \intersection B = \{ x | x \in A \land x \in B \}$
+- Set Difference :: $A - B = \{ x | x \in A \land x \not\in B \}$
+
+** Complement
+
+In order for the complement to make sense, you have to define a /universe/ set
+$U$. We can now define the complement as $A^C = \{ x | x \not\in A \land x \in U \}$.
+* Identities
+
+\begin{align*}
+A \union \emptyset &= A \\
+A \intersection U &= A \\
+A \union U &= U \\
+A \intersection \emptyset &= \emptyset \\
+A \union A &= A \\
+A \intersection A &= A \\
+(A^C)^C &= A
+\end{align*}
+* DeMorgan's Law
+
+\begin{align*}
+(A \union B)^C &= A^C \intersection B^C \\
+(A \intersection B)^C &= A^C \union B^C
+\end{align*}
+* Quantifiers
+
+You can write $\forall x (x \in A \implies P(x))$ as $\forall x \in A (P(x))$.
+
+This is also valid for existence: $\exists x (x \in A \land P(x))$ is equivalent
+to $\exists x \in A (P(x))$.
+* Proof Methods
+
+** Prove equivalence
+   
+There are a few methods for this:
+   
+1. Prove that RHS $\subseteq$ LHS and LHS $\subseteq$ RHS.
+2. Prove a chain of equalities.
+3. Use a membership table.
