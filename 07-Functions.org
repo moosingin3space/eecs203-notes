@@ -1,0 +1,83 @@
+#+TITLE: Functions
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-09-29
+#+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\N{\mathbb{N}}
+#+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\ret{\rightarrow}
+#+LATEX_HEADER: \newcommand*\compose{\odot}
+
+* Definition
+
+Let $A$ and $B$ be non-empty sets. A function $f$ from $A$ to $B$ is an
+assignment of exactly one element of $B$ to each element in $A$.
+
+Using mapping notation, $f : A \rightarrow B$, which means "for every element in
+$A$, there is a single value of $B$."
+
+$y$ is the /image/ of $x$ in the equation $y = f(x)$. Images can be taken for
+sets as well as single values. For any set $S \subseteq A$, the image
+of $S$ is
+$$ f(S) = \{ t \in B | \exists s \in S (t = f(s)) \} $$
+
+* Relations
+
+$f: \R \ret \R, f(x) = \sqrt{x}$ is *not* a function, it is a *relation*. If
+there are multiple values in $B$ for a single value in $A$, it is a relation,
+expressed as $R(x, y) \subseteq A \times B$. In this case: 
+$(x, f) \subseteq \R \times \R$. 
+* Equality
+
+Two functions are equal $\iff$ they have the same domain, codomain, and
+assignments.
+
+* Properties
+
+| Injective (one-to-one) | $\forall a_1, a_2 \in A (f(a_1) = f(a_2) \implies a_1 = a_2)$ |
+| Surjective (onto)      | $\forall b \in B \exists a \in A (f(a) = b)$                  |
+| Bijective              | $f$ is injective *and* surjective                             |
+* Composition
+
+Let $g: A \ret B$ and $f: B \ret C$. The /composition/ of $f$ and $g$ is defined
+as $f \compose g : A \ret C$.
+
+The opposite, the composition of $g$ and $f$, is only defined if $C \subseteq A$.
+
+** Properties
+
+- If $f$ and $g$ are both injective, then $f \compose g$ is also injective.
+- If $f$ and $g$ are both surjective, then $f \compose g$ is also surjective.
+- If $g$ and $g \compose f$ are surjective, then $f$ is surjective.
+
+** Invertible functions
+
+If $f: A \ret B$ is a bijection, then $\forall b \in B$, there exists a unique
+$a \in A$ such that $f(a) = b$.
+
+If $f: A \ret B$ is a bijection, we can define its inverse $f^{-1} : B \ret A$.
+We can say that $f^{-1}(b) = a$ such that $f(a) = b$.
+* Special functions
+
+** Identity
+
+Given a function $f : A \ret B$ and its inverse $f^{-1}: B \ret A$, the
+composition is defined as $f^{-1} \compose f = \iota_A$. 
+Likewise, $f \compose f^{-1} = \iota_B$.
+
+The /identity function/ over set $S$, $\iota_S$, returns the identity of the set
+$S$.
+* Functions and Cardinality
+  
+Suppose $A$ and $B$ are finite sets with $A \subseteq B$. In this case,
+$|A| \le |B|$. 
+
+Let $f : A \ret C$, $S \subseteq A$. Then, we find that $|f(S)| \le |S|$.
+
+** Infinite Cardinality
+
+$A$ and $B$ have the same cardinality $\iff$ there exists a bijective map such
+that $f : A \ret B$.
+
+Let $f : \N \ret \Z^+$ be $f(n) = n + 1$. $f$ is bijective, which implies that
+the set of positive integers and the set of non-negative integers have the same
+cardinality.
