@@ -1,0 +1,82 @@
+#+TITLE: Sequences, Summations, and Cardinality
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-10-01
+#+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\ret{\rightarrow}
+
+* Definitions
+
+- Sequence :: a function whose domain is a subset of $\Z$.
+              Denoted as $a_1, a_2, \ldots$
+- Recurrence relations :: $a_n$ is expressed in terms of
+     previous elements. Initial conditions have to be set here.
+     A sequence can be expressed as the solution to a recurrence relation.
+     We have /solved/ a recurrence relation when we find an explicit closed
+     formula for the recursive function.
+- Arithmetic progression :: a sequence defined like $a_n = a_{n-1} + d$ 
+     recursively, and defined like $a_n = dn + a_0$ explicitly.
+- Geometric progression :: a sequence defined like $a_n = a_{n-1}r$
+     recursively, and defined like $a_n = a_0r^{n-1}$ explicitly.
+
+* Verification example
+
+Verify that $a_n = 7 \cdot 2^n - n + 2$ solves the recurrence relation 
+$a_n = a_{n-1} + 2a_{n-2} + 2n - 9$:
+
+\begin{align}
+a_{n-1} + 2a_{n-2} + 2n - 9 &= 7 \cdot 2^{n-1} - (n-1) + 2 + 2(7 \cdot 2^{n-2} - (n-2) + 2) + 2n - 9
+&= 7 \cdot 2^{n-1} - (n-1) + 2 + 7 \cdot 2^{n-1} - 2n + 8 + 2n - 9 \\
+&= 7 \cdot 2^n - n + 3 + 8 - 9 \\
+&= 7 \cdot 2^n - n + 2 \\
+&= a_n
+\end{align}
+1. Substitution
+2. Distribution
+3. Simplification
+4. Equivalence
+* Summation
+
+When solving arbitrary summation problems, try to get the summation in terms of
+itself, then use algebra to solve the problem.
+
+** Helpful summations
+
+- Sum of first $N$ integers :: $\sum_{n=0}^N n = \frac{N(N+1)}{2}$
+- Arithmetic series :: $\sum_{n=0}^N (a + nd) = (N+1) \frac{a + (a + dN)}{2} = \frac{N + 1}{2} (a_0 + a_N)$
+- Geometric series :: $\sum_{n=0}^N ar^n = a\frac{r^{N+1} - 1}{r - 1}$ for $r \ne 1$
+     
+* Infinite sums
+
+The sum of an arithmetic series does not converge.
+
+- Geometric series :: $\sum_{k=0}^{\infty} r^k = \frac{1}{1 - r} \forall \{r \in \R| 0 < r < 1\}$
+* Cardinality
+  
+When you're discussing finite sets, cardinality can be thought of as the number
+of elements in the set. When you're discussing infinite sets, cardinality is the
+relative size of the infinity. (?)
+
+- The cardinalities of two sets $A$ and $B$ are equal if there exists a bijection
+  from $A \ret B$.
+- $\|A\| \le \|B\| \iff \exists \text{ a one-to-one function } f: A \ret B$
+  
+If $A$ is finite or $\|A\| = \|\Z^+\|$, we say that $A$ is /countable/. 
+Otherwise, $A$ is /uncountable/.
+ 
+** Schroder-Bernstein Theorem
+
+If $A$ and $B$ are sets with $\|A\| \le \|B\|$ and $\|B\| \le \|A\|$ then
+$\|A\| = \|B\|$.
+
+Therefore, if there are one-to-one functions $f: A \ret B$ and $g: B \ret A$,
+then there is a one-to-one correspondence between $A$ and $B$.
+
+*** Example
+
+Is there a one-to-one correspondence from $\|(0,1)\|$ and $\|(0,1]\|$?
+
+No obvious bijection exists, but we can define a function $f: (0,1) \ret (0,1]$
+as $f(x) = x$. We can also define $g: (0,1] \ret (0,1)$ as $g(x) = \frac{x}{2}$.
+Both of these functions are one-to-one, therefore, the cardinalities
+are equal.
