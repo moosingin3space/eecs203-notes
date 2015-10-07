@@ -64,7 +64,7 @@ relative size of the infinity. (?)
 If $A$ is finite or $\|A\| = \|\Z^+\|$, we say that $A$ is /countable/. 
 Otherwise, $A$ is /uncountable/.
  
-** Schroder-Bernstein Theorem
+** Schroeder-Bernstein Theorem
 
 If $A$ and $B$ are sets with $\|A\| \le \|B\|$ and $\|B\| \le \|A\|$ then
 $\|A\| = \|B\|$.
