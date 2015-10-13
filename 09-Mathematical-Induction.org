@@ -2,6 +2,7 @@
 #+AUTHOR: Nathan Moos
 #+DATE: 2015-10-06
 #+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\N{\mathbb{N}}
 #+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
 #+LATEX_HEADER: \newcommand*\ret{\rightarrow}
 
@@ -62,3 +63,44 @@ a_{k+1} &= a_k + \frac{1}{(3(k + 1) - 2)(3(k + 1) + 1)} \\
 &= \frac{k + 1}{3k + 4} \\
 &= a_{k+1}
 \end{align*}
+* Strong Induction
+  
+The inductive step is strengthened -- it requires that the predicate be true for
+*all* prior values of $k$ in addition to $k$.
+
+Induction implies strong induction and vice versa. A proof is no more correct 
+with strong induction than it is with induction.
+
+** Example
+
+*Prove* that given 3-cent and 5-cent stamps, you can make any total $n \ge 8$.
+
+Translate to quantifiers: $\forall n \ge 8 (\exists a, b (n = 3a + 5b))$. 
+
+Exhaustively demonstrate a few cases to get an idea for how the proof will work.
+\begin{align*}
+P(8) &= 3 + 5 \\
+P(9) &= 3 + 3 + 3 \\
+P(10) &= 5 + 5 \\
+P(11) &= 3 + P(8) \\
+P(12) &= 3 + P(9) \\
+P(13) &= 3 + P(10) \\
+P(14) &= 3 + P(11)
+\end{align*}
+
+Let $P(8)$ through $P(10)$ be the base cases. 
+
+*Inductive Step:* Let $k \in \Z^+ | k + 1 \ge 11$. 
+$P(k + 1 - 3)$ is true because $8 \le k + 1 - 3 \le k$, therefore
+$P(k + 1)$ is true, because you just need to add a 3-cent stamp.
+
+Strong induction was required to be able to use past values.
+
+* Well-Ordering Property
+  
+- Definition :: Every non-empty set of natural numbers has a /least/ element.
+                $\forall S \subseteq \N \land S \ne \emptyset \implies 
+                (\exists n \in S (\forall j \in S (n \le j)))$.
+
+The well-ordering property implies induction and strong induction. This can be
+proven by contradiction.

@@ -1,0 +1,64 @@
+#+TITLE: Counting and Pigeonhole Principle
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-10-13
+#+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\N{\mathbb{N}}
+#+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\ret{\rightarrow}
+#+LATEX_HEADER: \newcommand*\union{\cup}
+#+LATEX_HEADER: \newcommand*\intersection{\cap}
+#+LATEX_HEADER: \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+#+LATEX_HEADER: \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+* Product Rule
+
+If a procedure $T$ is defined as a series of tasks in order, where each task
+$T_i$ can be performed $n_i$ ways, then $T$ can be performed 
+$n_1 n_2 n_3 ... n_m$ ways.
+
+* Sum Rule
+
+If a procedure $T$ can be done in one of $n_1$ ways or one of $n_2$ ways (and so
+on), then $T$ can be performed $n_1 + n_2 + n_3 + ... + n_m$ ways.
+* Counting and Sets
+
+The cardinality of a product set is the product of the cardinalities of the
+sets. 
+\begin{align*}
+S &= A \times B \\
+|S| &= |A| \times |B|
+\end{align*}
+
+The cardinality of a union of disjoint sets is the sum of the cardinalities of
+the two sets.
+\begin{align*}
+S &= A \union B \\
+A \intersection B &= \emptyset \\
+|S| &= |A| + |B|
+\end{align*}
+
+** Inclusion-exclusion formula
+
+\begin{align*}   
+S &= \union_{i=0}^{n-1} S_i \\
+|S| &= \sum_{i=0}^{n-1} |S_i| - \sum_{i < j} |S_i \intersection S_j| + \sum_{i < j < k} |S_i \intersection S_j \intersection S_k| - ...
+\end{align*}
+This includes all cardinalities, subtracts pairwise intersections, then adds
+triple intersections, then subtracts quadruple intersections, and so on. The
+signs alternate.
+* Pigeonhole Principles
+
+** Classic
+
+If $n$ pigeons nest in $k < n$ holes, then at least one hole has two or more
+pigeons.
+
+** Generalized
+
+If $n$ objects are placed into $k < n$ boxes, then there is at least one box
+containing at least $\ceil{\frac{n}{k}}$ objects.
+
+** Purified
+
+For a non-empty finite bag of numbers, the maximum value is at least the
+average.
