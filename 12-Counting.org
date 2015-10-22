@@ -1,0 +1,61 @@
+#+TITLE: Counting
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-10-22
+#+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\N{\mathbb{N}}
+#+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\ret{\rightarrow}
+#+LATEX_HEADER: \newcommand*\union{\cup}
+#+LATEX_HEADER: \newcommand*\intersection{\cap}
+
+* Cheat sheet
+
+- $k$-permutation :: a /sequence/ of $k$ selected from $n$ (order matters)
+- $k$-combination :: a /set/ of $k$ selected from $n$ (order does not matter)
+- $P(n, k)$ :: total number of $k$-permutations
+- $C(n, k)$ :: total number of $k$-combinations
+
+* Combinatorial argument
+
+Describe a situation that models the left-hand side, then describe a similar
+situation that models the right-hand side. If both situations reduce to the
+same, that forms a combinatorial proof.
+
+* Generalizing permutations and combinations
+
+** Allow repetitions
+   
+- Permutations :: when selecting $k$ from $n$, allowing repetitions, 
+                  $P(n, k) = n^k$
+- Combinations :: Use the Stars-and-Bars theorem
+
+** Stars-and-Bars theorem
+
+If you are trying to choose $k$ objects of $n$ types with repetition, it is
+$\binom{k + n - 1}{k}$.
+
+*** Simple example
+    
+Let $k=2$ and the types be the set {apple, orange, pear}.
+
+#+BEGIN_SRC
+**||    2 apples, 0 oranges, 0 pears
+*|*|    1 apple, 1 orange, 0 pears
+*||*    1 apple, 0 oranges, 1 pear
+|**|    0 apples, 2 oranges, 0 pears
+|*|*    0 apples, 1 orange, 1 pear
+||**    0 apples, 0 oranges, 2 pears
+#+END_SRC
+
+*** Lower bounds
+
+Assume you have selected one of each of the $n$ types. The remaining number of
+selections becomes $k$ for the Stars-and-Bars theorem.
+
+** Combinations as bitstrings
+
+$\binom{9}{4}$ represents the number of 9-bit strings with 4 bits set.
+** Multinomial coefficient
+
+This is a generalization of the binomial coefficient:
+$\frac{N!}{n_1!n_2!...n_k!} = \binom{N}{n_1,n_2,...,n_k}$
