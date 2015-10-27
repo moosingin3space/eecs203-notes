@@ -34,6 +34,9 @@ same, that forms a combinatorial proof.
 If you are trying to choose $k$ objects of $n$ types with repetition, it is
 $\binom{k + n - 1}{k}$.
 
+The Stars-and-Bars theorem holds for indistinguishable objects and
+distinguishable bins.
+
 *** Simple example
     
 Let $k=2$ and the types be the set {apple, orange, pear}.
@@ -59,3 +62,66 @@ $\binom{9}{4}$ represents the number of 9-bit strings with 4 bits set.
 
 This is a generalization of the binomial coefficient:
 $\frac{N!}{n_1!n_2!...n_k!} = \binom{N}{n_1,n_2,...,n_k}$
+* Discrete Probability
+  
+The /sample space/ $S$ of a random experiment is the set of all possible
+outcomes. Sample space is independent of the fairness of the random experiment.
+
+A /discrete probability distribution/ is a function $p : S \ret [0, 1]$ where
+$S$ is the sample space such that $\sum_{s \in S} p(s) = 1$.
+Examples:
+- Fair die :: $p(s) = \frac{1}{6}, s = \{1, 2, 3, 4, 5, 6\}$
+- Fair coin :: $p(s) = \frac{1}{2}, s = \{H, T\}$
+- Loaded die :: Given $p(6) = 2 p(s) \forall s \in S \land s \ne 6$,
+\begin{align*}
+q = p(1) = p(2) = p(3) = p(4) = p(5) &= \frac{1}{2} p(6) \\
+\sum_{i=1}^6 p(i) &= 5q + 2q \\
+&= 7q \\
+7q &= 1 \\
+\implies q &= \frac{1}{7}
+\end{align*}
+The loaded die has a $\frac{2}{7}$ probability of rolling a 6, and a
+$\frac{1}{7}$ chance of rolling anything else.
+
+An /event/ is a subset of $S$. 
+
+The /complement/ of $E \subseteq S$ is $p(\overline{E}) = 1 - p(E)$.
+
+** Example
+
+Lottery: choose 6 numbers from the set $[0, 42]$, then have users guess. If
+a user guesses the 6 numbers exactly, the user wins.
+
+Probability of winning:
+\begin{align*}
+\|S\| &= \binom{42}{6} \\
+\|E\| &= 1 \\
+\therefore p(E) &= \frac{1}{\binom{42}{6}} \\
+&= \frac{1}{5 245 786}
+\end{align*}
+** Combining probabilties
+
+Combining discrete probabilities is effectively identical to combining
+cardinalities.
+
+*** Example
+
+Probability that $0 < a \le 100$ is divisible by 5 or 7.
+\begin{align*}
+\|E_1\| &= 20 \\
+\|E_2\| &= 14 \\
+\|E_1 \intersection E_2\| &= 2 \\
+\implies P(E_1 \union E_2) &= \frac{20}{100} + \frac{14}{100} - \frac{2}{100} \\
+&= \frac{32}{100}
+\end{align*}
+** Conditional probability
+
+The following is read "$E$ given $F$".
+$$ P(E | F) = \frac{P(E \intersection F)}{P(F)} $$
+
+Two events $E$ and $F$ are /independent/ iff
+$$ P(E \intersection F) = P(E)P(F) $$
+In terms of conditional probabilities:
+$$ P(E | F) = P(E) $$
+
+The "given" operator is NOT commutative!
