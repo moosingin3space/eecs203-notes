@@ -1,0 +1,52 @@
+#+TITLE: Probability and Bayes' Theorem
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-10-29
+#+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\ret{\rightarrow}
+#+LATEX_HEADER: \newcommand*\union{\cup}
+#+LATEX_HEADER: \newcommand*\intersection{\cap}
+
+* Bernoulli Trials
+
+Given a success probability $p$, failure probability $q = 1-p$, the probability
+of getting $k$ successes out of $n$ is.
+
+$$ \binom{n}{k} p^k q^{n-k} $$
+
+** Example
+
+Weighted coin $p(H) = \frac{2}{3}$.
+
+What is the probability of getting exactly 3 heads in 8 tosses?
+$$ \binom{8}{3} (\frac{2}{3})^3 (\frac{1}{3})^5 = 6.83 \%$$
+
+* Random Variables
+
+*Definition:* A /random variable/ is a function from a sample space $S$ to $\R$.
+
+** Example
+
+Rolling 2 dice has the sample space $s = \{ (1, 1), (1, 2), ..., (6, 6) \}$.
+You can define random variable $X : S \ret \R$ as $X(s_1, s_2) = s_1 + s_2$.
+
+* Bayes' Theorem
+
+Suppose that $E$ and $F$ are events from a sample space $S$ such that $p(E) > 0$
+and $p(F) > 0$. 
+
+\begin{align*}
+p(F | E) &= \frac{p(F \intersection E)}{p(E)} \\
+p(E | F) &= \frac{p(E \intersection F)}{p(F)} \\
+\implies p(E \intersection F) &= p(F | E)p(E) \\
+&= p(E | F)p(F) \\
+\implies p(F | E) &= \frac{p(E | F)p(F)}{p(E)}
+\end{align*}
+This last expression is called /Bayes' Theorem/. The $p(F)$ factor is referred
+to as the /prior/, $p(E)$ is the /normalizing factor/, $p(E|F)$ is the
+/likelihood/, and $p(F|E)$ is the /posterior/.
+
+** Useful identities
+
+\begin{align*}
+P(Y | D) + P(Y' | D) &= 1 
+\end{align*}
