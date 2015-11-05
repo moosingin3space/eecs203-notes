@@ -1,0 +1,57 @@
+#+TITLE: Relations
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-11-05
+#+LATEX_HEADER: \usepackage{cancel}
+
+* Definition
+
+Let $A$ and $B$ be sets.
+$$ A \times B = \{ (a, b) | a \in A, b \in B \} $$
+
+A relation from $A$ to $B$ is a subset of $A \times $B$.
+$$ R \subset A \times B $$
+
+\begin{align*}
+R(a, b) &\iff (a, b) \in R \\
+\cancel{R}(a, b) &\iff (a, b) \not\in R
+\end{align*}
+
+A relation is *not necessarily* a function.
+
+* Combining relations
+
+Let $R_1$ and $R_2$ be two relations from $A$ to $B$. 
+
+We can form:
+- Unions
+- Intersections
+- Differences
+- Complement
+- Exclusive OR
+
+** Composition
+   
+Given $R \subseteq A \times B$ and $S \subseteq B \times C$, the composition of
+$R$ and $S$ is:
+
+$$ S \odot R = \{ (a, c) | \exists b (a, b) \in R \land (b, c) \in S \} \subseteq A \times C $$
+
+** Exponentiation
+
+Definitions:
+\begin{align*}
+R^1 &= R \\
+R^{n+1} &= R^n \odot R
+\end{align*}
+* Properties on relations between elements of the same set
+
+- Reflexive :: $\forall x R(x, x)$
+- Symmetric :: $\forall (x, y) R(x, y) \iff R(y, x)$
+- Antisymmetric :: $\forall (x, y) (R(x, y) \land R(y, x)) \implies x = y$
+- Transitive :: $\forall (x, y, z) (R(x, y) \land R(y, z)) \implies R(x, z)$
+
+** Warnings
+
+- The phrase /antisymmetric/ does *not* mean "not symmetric".
+- The phrase /asymmetric/ is *not* equivalent to "not symmetric" either!
+- The phrase /irreflexive/ does *not* mean "not reflexive".
