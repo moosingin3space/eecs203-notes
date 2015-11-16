@@ -3,6 +3,9 @@
 #+DATE: 2015-11-05
 #+LATEX_HEADER: \usepackage{cancel}
 #+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\union{\cup}
+#+LATEX_HEADER: \newcommand*\intersection{\cap}
 
 * Definition
 
@@ -44,6 +47,22 @@ Definitions:
 R^1 &= R \\
 R^{n+1} &= R^n \odot R
 \end{align*}
+** Transitive Closure/Connectivity
+   
+$$ R^* = \union_{k=1}^n R^k $$
+
+*** Warshall's Algorithm
+
+Define $n$ x $n$ boolean matrices.
+Let
+\begin{align*}
+W_0 &= M_R \\
+W_k &= [ w_{ij}^k ] \\
+w_{ij}^k = 1 &\iff \exists \text{a path from $i$ to $j$ whose interior vertices
+include } \{ v_1, ..., v_k \} \\
+w_{ij}^k &= w_{ij}^{k-1} \lor (w_{ik}^{k-1} \land w_{kj}^{k-1})
+\end{align*}
+
 * Properties on relations between elements of the same set
 
 - Reflexive :: $\forall x R(x, x)$
@@ -90,3 +109,36 @@ Given a table, select a subset of columns.
 ** Join
    
 Given $n$ tables, fetch columns from each table, joining on certain keys.
+* Equivalence relations
+  
+$R$ is an /equivalence relation/ if it is
+- Reflexive
+- Symmetric
+- Transitive
+  
+** Equivalence classes
+
+An equivalence class is the set of all numbers that will yield the same value on
+a relation.
+
+* Partial orderings 
+  
+$R$ is a /partial ordering/ if it is
+- Reflexive
+- Antisymmetric
+- Transitive
+
+$a, b \in S$ are /comparable/ if $(a, b) \in R$ or $(b, a) \in R$.
+
+If /every pair of elements/ in $S$ is comparable, then $(S, R)$ is /totally
+ordered/.
+
+* Hasse Diagrams
+  
+- Purpose :: to represent partially-ordered sets
+
+Properties:
+- Write a relation as a directed graph with all arrows pointing up
+- Remove all self-loops
+- Remove all edges that transitivity implies
+- Remove all arrows
