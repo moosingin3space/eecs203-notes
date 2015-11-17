@@ -1,0 +1,74 @@
+#+TITLE: Graphs
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-11-17
+#+LATEX_HEADER: \usepackage{cancel}
+#+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\union{\cup}
+#+LATEX_HEADER: \newcommand*\intersection{\cap}
+
+* Introduction
+
+A graph $G = (V, E)$ consists of a non-empty set $V$ of vertices and a set $E$
+of edges. Each edge is associated with two verticies.
+
+* Types of Graph
+
+- Directed graph :: All edges have directions
+- Undirected graph :: no arrows
+- Mixed graph :: definition obviously follows
+                 
+* Graph Organizations
+
+- Complete graph :: all nodes are connected
+- Cycle :: there is a path that leads from one node back to itself.
+- Wheels :: A hub-and-spoke organization scheme
+- Hypercube :: If each node is assigned a bitstring, only one bit changes at once.
+- Bipartite graph :: it is possible to partition the set of vertices $V$ into 
+     two disjoint sets $V_1$ and $V_2$ where every edge connects from one
+     partition to the other.
+- Perfect matching :: A set of edges that touches every vertex exactly once.
+     A perfect matching can only be found if there is no constricted set.
+- Constricted set :: Given a vertex $A$, $|N(A)| < |A|$
+                 
+* Terminology
+  
+** Undirected Graph
+
+- $u$ and $v$ are adjacent vertices or neighbors if connected by an edge
+- The set of all neighbors is called a neighborhood
+- The degree of a vertex is the number of vertices incident on it (count
+  self-loops twice)
+
+** Directed Graph
+
+Two types of degree: in-degree for incoming edges and out-degree for outgoing
+edges.
+
+** Subgraphs and Unions
+
+The union of two graphs is given by
+$$ G_1 \union G_2 = (V_1 \union V_2, E_1 \union E_2) $$
+
+/Subgraphs/ meet the following conditions:
+\begin{align*}
+G &= (V, E) \\
+H &= (W, F) \\
+W &\subseteq V \\
+F &\subseteq E
+\end{align*}
+
+If $G \ne H$, then $H$ is a /proper subgraph/ of $G$.
+
+* Handshake Theorem
+
+For a graph $G = (V, E)$,
+$$ 2 |E| = \sum_{v \in V} \mathrm{deg}(v) $$
+
+** Implications
+
+An undirected graph has an even number of nodes of odd degree.
+* Hall's Marriage Theorem
+
+A bipartite graph has a /complete matching/ from $V_1$ to $V_2$ iff 
+$|N(A)| \ge |A|$.
