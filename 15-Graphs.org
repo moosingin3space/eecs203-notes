@@ -6,6 +6,7 @@
 #+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
 #+LATEX_HEADER: \newcommand*\union{\cup}
 #+LATEX_HEADER: \newcommand*\intersection{\cap}
+#+LATEX_HEADER: \newcommand*\ret{\rightarrow}
 
 * Introduction
 
@@ -30,6 +31,7 @@ of edges. Each edge is associated with two verticies.
 - Perfect matching :: A set of edges that touches every vertex exactly once.
      A perfect matching can only be found if there is no constricted set.
 - Constricted set :: Given a vertex $A$, $|N(A)| < |A|$
+- Connected graph :: There is a path between all pairs of distinct nodes.
                  
 * Terminology
   
@@ -71,4 +73,50 @@ An undirected graph has an even number of nodes of odd degree.
 * Hall's Marriage Theorem
 
 A bipartite graph has a /complete matching/ from $V_1$ to $V_2$ iff 
-$|N(A)| \ge |A|$.
+$|N(A)| \ge |A|$ where $A$ is all possible subsets of $V_1$ and $V_2$.
+* Adjacency Matrices
+
+Given an undirected graph, it is possible to produce a matrix that is 0 if there
+is no connection and 1 if there is a connection:
+$$ a_{ij} = 1 \iff \{v_i,v_j\} \in E, 0 \text{ otherwise} $$
+Undirected graphs will always have symmetric matrices. Directed graphs are more
+similar to relation matrices than undirected graph matrices.
+
+Always takes $O(n^2)$ storage.
+
+* Incidence Matrices
+
+$$ M_{ij} = 1 \iff j\text{th edge is incident to the } i\text{th vertex} $$
+
+Takes $O(nm)$ storage.
+* Isomorphism
+
+If $G_1$ and $G_2$ have the same structure, they are called /isomorphic/.
+
+*Definition:* Two graphs $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ are isomorphic
+if there exists a bijection $f : V_1 \ret V_2$.
+The function $f$ is called an /isomorphism/. 
+
+*Conjecture:* If $G_1$ and $G_2$ are isomorphic, $a$ and $b$ are adjacent in 
+$G_1$ implies $f(a)$ and $f(b)$ are adjacent in $G_2$.
+
+*Graph Invariants* that are not changed by isomorphisms:
+- Number of edges
+- Number of vertices
+- Preservation of subgraphs
+- Degree of nodes
+  
+How to determine if two graphs are isomorphic?
+- List invariants. If invariants are not preserved, not isomorphic.
+- Try to establish an isomorphism.
+* Paths
+
+A /path/ of length $n > 0$ from $v_1$ to $v_2$ in graph $G$ is a sequence of
+edges of $G$ that traces along edges from $v_1$ to $v_2$.
+* Connected Graphs
+  
+A graph is said to be /strongly connected/ if one point can connect to all the
+other points in a directed graph by following direction arrows.
+
+A graph is said to be /weakly connected/ if the undirected edges form a path
+from any point to all the other points.
