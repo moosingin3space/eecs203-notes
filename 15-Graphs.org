@@ -120,3 +120,46 @@ other points in a directed graph by following direction arrows.
 
 A graph is said to be /weakly connected/ if the undirected edges form a path
 from any point to all the other points.
+* Circuits and Paths
+
+** Euler Circuit
+
+*Definition:* An Euler circuit in a graph $G$ is a simple circuit containing
+every edge in $G$, where a /simple circuit/ does not contain the same edge more
+than once while beginning and ending on the same node.
+
+A connected multigraph has an Euler circuit iff it has exactly zero vertices
+with odd degree.
+
+** Euler Path
+
+*Definition:* An Euler path in a graph $G$ is a simple path containing every
+edge in $G$, where a /simple path/ does not contain the same edge more than
+once.
+
+A connected multigraph has an Euler path but no circuit if and only if it has
+exactly two vertices of odd degree. 
+** Hamilton Path
+   
+*Definition:* A Hamilton path is a simple path that passes through every vertex
+exactly once.
+
+There are /no known necessary-and-sufficient conditions/ for finding a Hamilton
+path.
+
+** Hamilton Circuit
+   
+*Definition:* A Hamilton circuit is a Hamilton path that starts and ends on the
+same node.
+
+If $G$ is a complete graph with $n \ge 3$, a Hamilton circuit exists.
+
+** Dirac's Theorem
+   
+If every vertex has degree at least $\frac{n}{2}$ then $G$ has a Hamilton
+circuit.
+
+** Ore's Theorem
+
+If every pair of non-adjacent vertices $u, v$ satisfies 
+$\mathrm{deg}(u) + \mathrm{deg}(v) \ge n$, $G$ has a Hamilton circuit.
