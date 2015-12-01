@@ -21,10 +21,12 @@ of edges. Each edge is associated with two verticies.
                  
 * Graph Organizations
 
-- Complete graph :: all nodes are connected
-- Cycle :: there is a path that leads from one node back to itself.
-- Wheels :: A hub-and-spoke organization scheme
+- Complete graph :: all nodes are connected. Denoted as $K_n$.
+- Cycle :: there is a path that leads from one node back to itself. Denoted as
+           $C_n$.
+- Wheels :: A hub-and-spoke organization scheme. Denoted as $W_n$.
 - Hypercube :: If each node is assigned a bitstring, only one bit changes at once.
+               Denoted as $Q_n$.
 - Bipartite graph :: it is possible to partition the set of vertices $V$ into 
      two disjoint sets $V_1$ and $V_2$ where every edge connects from one
      partition to the other.
@@ -163,3 +165,16 @@ circuit.
 
 If every pair of non-adjacent vertices $u, v$ satisfies 
 $\mathrm{deg}(u) + \mathrm{deg}(v) \ge n$, $G$ has a Hamilton circuit.
+* Shortest Path Algorithms
+
+** Dijkstra's Algorithm
+   A solution to the single-source shortest-path problem in graph theory.
+
+- Input :: weighted graph $G = (V, E)$, source vertex $a \in V$, non-negative
+           edge weights.
+- Output :: an array `dist[v]`, length of the shortest path from $a$ to $v$.
+            
+1. Let $S_k =$ the $k$ closest vertices to $a$. Let $Q_k = \overline{S_k}$
+2. Let $\mathrm{dist}_k[v]$ be the length of the shortest path from $a$ to $v$
+   that contains only vertices from $S_k \union \{v\}$.
+3. Compute $\mathrm{dist}_{k+1}[v] = \mathrm{min}(\mathrm{dist}_k[v], \mathrm{dist}_k[u] + w(u, v))$

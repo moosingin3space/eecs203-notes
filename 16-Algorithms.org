@@ -1,0 +1,50 @@
+#+TITLE: Algorithms
+#+AUTHOR: Nathan Moos
+#+DATE: 2015-12-01
+#+LATEX_HEADER: \usepackage{cancel}
+#+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
+#+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
+#+LATEX_HEADER: \newcommand*\union{\cup}
+#+LATEX_HEADER: \newcommand*\intersection{\cap}
+#+LATEX_HEADER: \newcommand*\ret{\rightarrow}
+
+* Definition
+
+An algorithm is a precise set of instructions for performing a computation.
+
+* Searches
+  
+Given a number $x$ in a sorted list $a_i$, return index $i$ such that $x = a_i$.
+
+** Linear search
+   
+#+BEGIN_SRC
+procedure linear_search(x, $a_1$, ..., $a_n$)
+    i := 1
+    while ($i \le n$ and $x \ne a_i$)
+        i := i + 1
+    if $i \le n$ then location := i
+    else location := 0
+    return location
+#+END_SRC
+   
+*Analysis:* The algorithm is correct. It is not optimal -- it will finish in
+$O(n)$ time.
+   
+** Binary search
+   
+#+BEGIN_SRC
+procedure binary_search(x, $a_1$, ..., $a_n$)
+    i := 1
+    j := n
+    while i < j
+        m := floor((i+j)/2)
+        if $x > a_m$ then i := m + 1
+        else j := m
+    if $x = a_i$ then location := i
+    else location := 0
+    return location
+#+END_SRC
+
+*Analysis:* The algorithm is correct. It is optimal -- it will finish in 
+$O(log n)$ time.
