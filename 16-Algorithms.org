@@ -2,6 +2,7 @@
 #+AUTHOR: Nathan Moos
 #+DATE: 2015-12-01
 #+LATEX_HEADER: \usepackage{cancel}
+#+LATEX_HEADER: \newcommand*\N{\mathbb{N}}
 #+LATEX_HEADER: \newcommand*\R{\mathbb{R}}
 #+LATEX_HEADER: \newcommand*\Z{\mathbb{Z}}
 #+LATEX_HEADER: \newcommand*\union{\cup}
@@ -48,3 +49,33 @@ procedure binary_search(x, $a_1$, ..., $a_n$)
 
 *Analysis:* The algorithm is correct. It is optimal -- it will finish in 
 $O(log n)$ time.
+* Asymptotic Notation
+
+Estimate the growth of a function without worrying about constants and smaller
+terms. 
+
+** Big-O Notation
+
+Let $f : \N \ret \R$ and $g : \N \ret \R$. $f$ is $O(g)$ iff 
+$\exists C, k \in \R$ and 
+$$ \forall n > k |f(n)| \le C|g(n)| $$
+
+This effectively means "$f$ grows no faster than some fixed multiple of $g$."
+
+To solve a Big-O problem, find values for $k$ and $C$ that make $f$ grow no
+faster than a multiple of $g$.
+
+** Big-Omega Notation
+
+$f$ is $\Omega(g)$ iff $\exists C, k \in \R$ and 
+$$ \forall n > k |f(n)| \ge C|g(n)| $$
+
+"$f$ grows at least as fast as $g$."
+
+** Big-Theta Notation
+
+$f$ is $\Theta(g)$ iff $f$ is $O(g)$ and $f$ is $\Omega(g)$
+** Properties
+
+- Linearity :: $f_1(n) = O(g_1(n)), f_2(n) = O(g_2(n)) \implies (f_1 + f_2) = O(\mathrm{max}(g_1(n), g_2(n)))$
+- Product :: $f_1(n) = O(g_1(n)), f_2(n) = O(g_2(n)) \implies (f_1 f_2)(n) = O(g_1(n) g_2(n))$
