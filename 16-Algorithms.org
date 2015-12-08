@@ -76,6 +76,10 @@ $$ \forall n > k |f(n)| \ge C|g(n)| $$
 
 $f$ is $\Theta(g)$ iff $f$ is $O(g)$ and $f$ is $\Omega(g)$
 ** Properties
-
+   
 - Linearity :: $f_1(n) = O(g_1(n)), f_2(n) = O(g_2(n)) \implies (f_1 + f_2) = O(\mathrm{max}(g_1(n), g_2(n)))$
 - Product :: $f_1(n) = O(g_1(n)), f_2(n) = O(g_2(n)) \implies (f_1 f_2)(n) = O(g_1(n) g_2(n))$
+* Dynamic Programming
+
+Recurrance relations are used to find the overall solution of smaller,
+overlapping sub-problems.
